@@ -35,7 +35,7 @@ namespace GrillBuddy.Controllers
         //e non uno dopo l'altro
         [HttpPost]
         [Route("Login")]
-        public async Task<IActionResult> Login(LoginModel model)  //restituisce un tipo Task come promessa che restituirò un oggetto di quel tipo
+        public async Task<IActionResult> Login(LoginDTO model)  //restituisce un tipo Task come promessa che restituirò un oggetto di quel tipo
         {
             var User = await _userManager.FindByNameAsync(model.Username); //verifichiamo se l'utente esiste e appena finito la ricerca lo assegna alla variabile 
             if (User != null && await _userManager.CheckPasswordAsync(User, model.Password))
@@ -65,7 +65,7 @@ namespace GrillBuddy.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public async Task<IActionResult> Register(RegisterModel model)
+        public async Task<IActionResult> Register(RegisterDTO model)
         {
             var UserExists = await _userManager.FindByNameAsync(model.Username);
             if (UserExists != null)
@@ -86,7 +86,7 @@ namespace GrillBuddy.Controllers
         [HttpPut]
         [Authorize(Roles = "Admin")]
         [Route("UpdateUSer")]
-        public async Task<IActionResult> Update(UtenteModel nuovo)
+        public async Task<IActionResult> Update(UtenteDTO nuovo)
         {
             User user = await _userManager.FindByIdAsync(nuovo.UtenteId);
             if (user != null)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GrillBuddy.Models
 {
-    public class LoginModel
+    public class LoginDTO
     {
         [Required]
         public string Username { get; set; }

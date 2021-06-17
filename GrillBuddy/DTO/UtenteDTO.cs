@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GrillBuddy.DTO
 {
-    public class UtenteModel
+    public class UtenteDTO
     {
         public string UtenteId { get; set; }
         public string Name { get; set; }
