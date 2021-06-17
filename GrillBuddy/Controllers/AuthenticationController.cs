@@ -1,5 +1,8 @@
-﻿using GrillBuddy.DAL.Entities;
+﻿using GrillBuddy.DAL.Data;
+using GrillBuddy.DAL.Entities;
+using GrillBuddy.DTO;
 using GrillBuddy.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +24,7 @@ namespace GrillBuddy.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
+        private readonly ApplicationDbContext _context;
 
         public AuthenticationController(UserManager<User> userManager, IConfiguration configuration)
         {
@@ -77,6 +81,38 @@ namespace GrillBuddy.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             return Ok();
 
+        }
+
+        [HttpPut]
+        [Authorize(Roles = "Admin")]
+        [Route("UpdateUSer")]
+        public async Task<IActionResult> Update(UtenteModel nuovo)
+        {
+            User user = await _userManager.FindByIdAsync(nuovo.UtenteId);
+            if (user != null)
+            {
+                user.UserName = nuovo.Username;
+                user.Name = nuovo.Name;
+                user.Surname = nuovo.Surname;
+                user.NormalizedUserName = nuovo.Username.ToUpper();
+                _context.SaveChanges();
+                return Ok(user);
+            }
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+        [HttpDelete]
+        [Authorize(Roles = "Admin")]
+        [Route("DeleteUser{username}")]
+        public async Task<IActionResult> DeleteUser(string username)
+        {
+            var currentUser = await _userManager.FindByNameAsync(username);
+            if (currentUser != null)
+            {
+                var result = await _userManager.DeleteAsync(currentUser);
+                if (result.Succeeded)
+                    return Ok();
+            }
+            return StatusCode(StatusCodes.Status500InternalServerError);
         }
     }
 }
