@@ -1,4 +1,4 @@
-﻿using GrillBuddy.DAL.Entities;
+﻿
 using GrillBuddy.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace GrillBuddy.Controllers
 {
-    [Route("api/[controller]")]
+    /*[Route("api/[controller]")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
@@ -78,5 +78,5 @@ namespace GrillBuddy.Controllers
             return Ok();
 
         }
-    }
+    }*/
 }

@@ -1,5 +1,4 @@
-using GrillBuddy.DAL.Data;
-using GrillBuddy.DAL.Entities;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,13 +32,13 @@ namespace GrillBuddy
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //configurazione connectionString per la connessione col DB
+           /* services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));*/ //configurazione connectionString per la connessione col DB
 
             //CORS
 
-            services.AddIdentity<User, IdentityRole>()    //configurazione dell'identity
-                    .AddEntityFrameworkStores<ApplicationDbContext>()
-                    .AddDefaultTokenProviders();
+            //services.AddIdentity<User, IdentityRole>()    //configurazione dell'identity
+            //        .AddEntityFrameworkStores<ApplicationDbContext>()
+            //        .AddDefaultTokenProviders();
 
             services.AddAuthentication(x =>
             {
