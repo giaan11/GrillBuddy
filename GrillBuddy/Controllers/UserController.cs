@@ -14,34 +14,7 @@ namespace Gruppo8.Controller
     [ApiController]
     public class UserController : ControllerBase
     {
-        [HttpPut]
-        [Route("UpdateUsername")]
-        public IActionResult UpdateUsername(string username, string email, string password)
-        {
-            return Ok();
-        }
 
-        [HttpPut]
-        [Route("UpdateEmail")]
-        public IActionResult UpdateEmail(string username, string nuovaemail)
-        {
-            return Ok();
-        }
-
-
-        [HttpPut]
-        [Route("UpdatePassword")]
-        public async Task<IActionResult> UpdatePassword(string newpassword, string oldpassword, string username)
-        {
-            return Ok();
-        }
-
-        [HttpPut]
-        [Route("AggiungiATeam")]
-        public IActionResult AggiungiATeam(string username, int TeamId)
-        {
-            return Ok();
-        }
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
@@ -58,40 +31,6 @@ namespace Gruppo8.Controller
         {
             return Ok();
         }
-
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        [Route("GetSingleWithEventi/{username}")] // non funziona il mapper 
-        public IActionResult GetSingleWithEventi(string username)
-        {
-            return Ok();
-        }
-
-        [HttpGet]
-        //[Authorize(Roles = "Admin")]
-        [Route("GetAllWithEventi")]  //non funziona il mapper
-        public IActionResult GetAllWithEventi()
-        {
-            return Ok();
-        }
-
-
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        [Route("GetSingleWithPunteggi/{username}")]
-        public IActionResult GetSingleWithPunteggi(string username)
-        {
-            return Ok();
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        [Route("GetAllWithPunteggi")]
-        public IActionResult GetAllWithPunteggi()
-        {
-            return Ok();
-        }
-
 
     }
     
